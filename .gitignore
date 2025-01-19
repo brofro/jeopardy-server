@@ -1,0 +1,14 @@
+# Compiled files
+build/
+
+# Dependency directories
+.env
+.pytest_cache/
+.venv/
+__pycache__/
+.git/
+# Other
+.DS_Store
+.idea/
+*.pyc
+*.log
