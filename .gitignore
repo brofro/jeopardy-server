@@ -12,3 +12,7 @@ __pycache__/
 .idea/
 *.pyc
 *.log
+.python-version
+uv.lock
+.venv/
+__pycache__/
