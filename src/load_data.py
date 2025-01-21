@@ -3,28 +3,11 @@ import sqlalchemy as sa
 from sqlalchemy.orm import declarative_base
 from datetime import datetime
 from pathlib import Path
-import logging
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from loguru import logger
+from .models import Clue
 
 # Database setup
 Base = declarative_base()
-
-class Clue(Base):
-    __tablename__ = 'clues'
-    
-    id = sa.Column(sa.Integer, primary_key=True)
-    round = sa.Column(sa.Integer)
-    clue_value = sa.Column(sa.Integer)
-    is_daily_double = sa.Column(sa.Boolean)
-    category = sa.Column(sa.String)
-    comments = sa.Column(sa.String)
-    clue_text = sa.Column(sa.String)
-    correct_answer = sa.Column(sa.String)
-    air_date = sa.Column(sa.Date)
-    notes = sa.Column(sa.String)
 
 def create_db_engine():
     """Create SQLite database engine"""
@@ -37,10 +20,10 @@ def load_data(engine):
     data_path = Path(__file__).parent.parent / 'combined_season1-40.tsv'
     
     if not data_path.exists():
-        logger.error(f"Data file not found at {data_path}")
+        logger.error("Data file not found at {}", data_path)
         return
 
-    logger.info(f"Loading data from {data_path}")
+    logger.info("Loading data from {}", data_path)
     
     with engine.begin() as conn:
         with open(data_path, 'r', encoding='utf-8') as f:
@@ -73,13 +56,13 @@ def load_data(engine):
                     total_rows += 1
                     
                     if total_rows % 1000 == 0:
-                        logger.info(f"Processed {total_rows} rows...")
+                        logger.info("Processed {} rows...", total_rows)
                     
                 except Exception as e:
-                    logger.error(f"Error processing row {row}: {str(e)}")
+                    logger.error("Error processing row {}: {}", row, e)
                     continue
             
-            logger.info(f"Successfully loaded {total_rows} rows")
+            logger.info("Successfully loaded {} rows", total_rows)
 
 if __name__ == '__main__':
     engine = create_db_engine()

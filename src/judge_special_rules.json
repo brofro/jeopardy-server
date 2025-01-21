@@ -1,0 +1,7 @@
+{
+    "QUOTATION MARK": "In these categories, a letter or group of letters will be placed inside quotation marks in the category name; correct responses will begin with, end with, or otherwise contain that letter or group of letters.",
+    "CROSSWORD CLUES": "A specialized 'quotation mark' category in which the category name gives the first letter and the individual clues give the number of letters in the correct response. Previously known as STARTS WITH [Letter] or FILE UNDER [Letter], these versions did not give the expected number of letters.",
+    "BEFORE & AFTER": "In these categories, the correct response will be a combination of two phrases or concepts that share a common word, with that word appearing only once in the combined response.",
+    "RHYME TIME": "In these categories, the correct response must rhyme with a word or phrase given in the clue.",
+    "SAME NAME": "In these categories, the correct response will be something that shares its name with something else, often from a different category (e.g., a person and a place)."
+}

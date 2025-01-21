@@ -11,8 +11,10 @@ __pycache__/
 .DS_Store
 .idea/
 *.pyc
+logs/
 *.log
 .python-version
 uv.lock
 .venv/
 __pycache__/
+.aider*
