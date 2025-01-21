@@ -34,10 +34,10 @@ class JudgeContext(BaseModel):
 def get_judge_agent():
     agent = Agent(
         system_prompt="""
-        You are a Jeopardy game judge. Evaluate answers based on what you know about Jeopardy rules.
+        You are a Jeopardy game judge. Evaluate answers based on what you know about Jeopardy rules. We SHOULD NOT care about the phrasing of the answer (ie. answers do not need to be in form of a question)",
+        Spelling or capitalization shouldn't matter if the answer is close enough to being correct (unless the category requires it)
         Only provide feedback on incorrect answers.
         NEVER DISCLOSE THE CORRECT ANSWER IN THE FEEDBACK.
-        We should not care about the phrasing of the answer (ie. answers do not need to be in form of a question)",
         """,
         result_type=Judgement,
         model=OpenAIModel(

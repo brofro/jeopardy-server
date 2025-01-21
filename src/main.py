@@ -161,7 +161,7 @@ async def get_round(round_value: int, category: Optional[str] = None) -> Dict[st
         logger.error("Error fetching round data: {}", e)
         raise HTTPException(status_code=500, detail="Internal server error")
 
-
+judge_agent_singleton = get_judge_agent()
 @app.post("/answer", response_model=Dict[str, Any])
 async def submit_answer(request: Request) -> Dict[str, Any]:
     """
@@ -223,7 +223,7 @@ async def submit_answer(request: Request) -> Dict[str, Any]:
 
                 # Get judgement from AI agent
                 logger.debug("Calling judge agent with context: {}", judge_context)
-                judge_agent = get_judge_agent()
+                judge_agent = judge_agent_singleton
                 judgement = await judge_agent.run(
                     "Please evaluate this answer", deps=judge_context
                 )
